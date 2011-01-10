@@ -17,6 +17,15 @@ Branches on a remote repo:
     # Like telling git to "push nothing to branch"
     $ git push origin :BRANCH_NAME
 
+List remote branches:
+
+    $ git branch -r
+
+Operations on remote branches:
+
+    $ git log origin/foo
+    $ git diff origin/HEAD
+
 ## Stashes
 
 Temporary branches that are not meant to be kept for long or distributed.
