@@ -1,0 +1,10 @@
+# Branches
+
+## Local
+
+* remove: `git -d BRANCHNAME`
+* rename: `git -m CURRENT_NAME NEW_NAME`
+
+## Remote
+
+* remove remote branch: `git push origin :BRANCH_NAME`
