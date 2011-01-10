@@ -2,9 +2,30 @@
 
 ## Local
 
-* remove: `git -d BRANCHNAME`
-* rename: `git -m CURRENT_NAME NEW_NAME`
+Local branches:
+
+    # Delete.
+    $ git -d BRANCHNAME
+
+    # Rename.
+    $ git -m CURRENT_NAME NEW_NAME
 
 ## Remote
 
-* remove remote branch: `git push origin :BRANCH_NAME`
+Branches on a remote repo:
+
+    # Like telling git to "push nothing to branch"
+    $ git push origin :BRANCH_NAME
+
+## Stashes
+
+Temporary branches that are not meant to be kept for long or distributed.
+
+With a dirty working copy: 
+
+    $ git stash
+    # Stashes the current changes and checkouts the previous state
+    # ...do something
+    # retrieve the stashed changes and apply them to the working copy.
+    $ git stash apply
+
