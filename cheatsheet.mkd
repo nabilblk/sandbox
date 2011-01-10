@@ -38,3 +38,51 @@ With a dirty working copy:
     # retrieve the stashed changes and apply them to the working copy.
     $ git stash apply
 
+# History
+
+## Amend
+
+    # Change last commit's message
+    $ git commit --amend
+
+You can add a file after committing and then
+
+    $ git commit --amend
+
+to merge that into the previous commit. You can use the `-a` flag to include
+all of the pending changes in the previous commit.
+
+## Rebase
+
+To interactively edit the las 10 commits:
+
+    $ git rebase -i HEAD~10
+
+You can remove, edit the commit message, squash commits together, reorder
+them, etc. Check `git help rebase` for instructions.
+
+# Commits
+
+Committing only certain changes:
+
+    # Will ask you for each edit...
+    $ git add -p
+
+    # interactive, more complicated but more powerful
+    $ git add -i
+
+# The index
+
+Differences between the working copy and the last commit:
+
+    $ git diff
+
+Differences between the index (staged changes) and the last commit:
+
+    $ git diff --cached
+
+# Maintenance
+
+Removes untracked files and directories:
+
+    $ git clean -f -d
