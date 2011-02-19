@@ -83,6 +83,18 @@ Committing only certain changes:
     # edit the patch file before adding it to the stage/index
     $ git add -e
 
+Retrieving information about a commit:
+
+    # Shows the commit message as well as a full diff.
+    $ git show <commit-id>
+
+Diff between two commits:
+
+    $ git diff <older-commit-id> <more-recent-commit-id>
+    # you can do this:
+    $ git diff commit-id~4 commit-id
+    # to get the diff between commit-id and the previous 4 commits.
+
 # The index
 
 Differences between the working copy and the last commit:
@@ -92,6 +104,8 @@ Differences between the working copy and the last commit:
 Differences between the index (staged changes) and the last commit:
 
     $ git diff --cached
+    # I'd rather use the 'staged' alias, as 'staged' changes make more sense
+    $ git diff --staged
 
 # Maintenance
 
