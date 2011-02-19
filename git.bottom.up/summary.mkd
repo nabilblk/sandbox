@@ -1,0 +1,22 @@
+# Blobs and Trees
+
+File contents are stored in blobs. Blobs are stored as leaf nodes within a
+tree. Blobs do not hold any metadata about the contents. Two blobs with the
+same content will have the same hash id, meaining they will be stored only
+once in a repo.
+
+    # to get the hash id of a blob.
+    $ git hash-object path/to/foo
+
+Tree objects contain metadata such as the file name. Two tree objects that
+contain the same files, with the same names, with the same content will have
+the same hash id. They will be stored only once in a repo.
+
+    # lists the contents of a tree object, similar to /bin/ls. similar.
+    $ git ls-tree <tree-ish hash>
+
+# Commits
+
+Commits contain a reference to the tree object, a parent, information about
+the author/committer and a commit message. The 'parent' pointer is what
+creates the notion history.
