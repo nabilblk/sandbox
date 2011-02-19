@@ -28,15 +28,24 @@ Operations on remote branches:
 
 ## Stashes
 
-Temporary branches that are not meant to be kept for long or distributed.
+Temporary branches that are not meant to be kept for long or distributed. Git
+can keep a stack of stashed changes.
 
 With a dirty working copy: 
 
     $ git stash
     # Stashes the current changes and checkouts the previous state
     # ...do something
-    # retrieve the stashed changes and apply them to the working copy.
+    # retrieve the stashed changes and apply them to the working copy (without
+    # deleting the stash)
     $ git stash apply
+
+Stack manipulation:
+
+    $ git stash list
+    $ git stash show
+    $ git stash pop <stash> # (removes the stash from the list)
+    $ git stash clear
 
 # History
 
@@ -70,6 +79,9 @@ Committing only certain changes:
 
     # interactive, more complicated but more powerful
     $ git add -i
+
+    # edit the patch file before adding it to the stage/index
+    $ git add -e
 
 # The index
 
