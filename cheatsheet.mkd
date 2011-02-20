@@ -38,7 +38,9 @@ Operations on remote branches:
 ## Stashes
 
 Temporary branches that are not meant to be kept for long or distributed. Git
-can keep a stack of stashed changes.
+can keep a stack of stashed changes. Stashed changes are not related to any
+branch: you can stash a set of changes in branch foo and later apply them to
+branch bar.
 
 With a dirty working copy: 
 
