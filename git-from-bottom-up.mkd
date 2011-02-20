@@ -6,17 +6,52 @@ same content will have the same hash id, meaining they will be stored only
 once in a repo.
 
     # to get the hash id of a blob.
-    $ git hash-object path/to/foo
+    $ git hash-object path/to/file
 
 Tree objects contain metadata such as the file name. Two tree objects that
 contain the same files, with the same names, with the same content will have
 the same hash id. They will be stored only once in a repo.
 
     # lists the contents of a tree object, similar to /bin/ls. similar.
-    $ git ls-tree <tree-ish hash>
+    $ git ls-tree <tree-ish-hash>
 
 # Commits
 
 Commits contain a reference to the tree object, a parent, information about
 the author/committer and a commit message. The 'parent' pointer is what
 creates the notion history.
+
+To create a commit:
+
+* `git add <path>` adds changes to the index. Blobs are created at this point.
+* `git write-tree` records the contents of the index in a tree object.
+* `git commit-tree <tree-id>` makes a commit object that holds the tree
+  specified. To specify a parent there is a `-p` option.
+
+# Branches
+
+Branches are just named references to a commit. The file .git/refs/heads/foo
+contains the id of the most recent commit in branch 'foo.'
+
+You can update references to branches:
+
+    $ git update-ref refs/heads/foo <commit-id>
+
+# Working tree
+
+To associate the working tree with a branch:
+
+    $ git symbolic-ref HEAD refs/heads/foo
+
+this happens automatically whenever you checkout a branch.
+
+# Merge vs. rebase
+
+With merge you get a merge commit everytime you rebase your branch (this is
+what happens when you 'pull' from a remote repo.) With rebase you don't get
+the intermediary merge commits, but you might get commits where your code does
+not compile or work, since the code was not compiled at every commit on the
+newly rebased state.
+
+Do not rebase remote branches, because any other repos that point to those
+branches will be confused by the changed commits.
