@@ -1,21 +1,30 @@
 # Branches
 
+    # list branches
+    $ git branch -v
+
+    # create a branch
+    $ git checkout -b <new-branch-name>
+
+    # switch to a branch
+    $ git checkout <existing-branch-name>
+
 ## Local
 
 Local branches:
 
     # Delete.
-    $ git -d BRANCHNAME
+    $ git -d <branch-name>
 
     # Rename.
-    $ git -m CURRENT_NAME NEW_NAME
+    $ git -m <current-name> <new-name>
 
 ## Remote
 
 Branches on a remote repo:
 
     # Like telling git to "push nothing to branch"
-    $ git push origin :BRANCH_NAME
+    $ git push origin :<remote-branch-name>
 
 List remote branches:
 
@@ -44,10 +53,13 @@ Stack manipulation:
 
     $ git stash list
     $ git stash show
-    $ git stash pop <stash> # (removes the stash from the list)
+    # remove a stashed change from the list
+    $ git stash pop <stash-id>
     $ git stash clear
 
 # History
+
+Only rewrite history on changes that have not been shared.
 
 ## Amend
 
@@ -92,8 +104,8 @@ Diff between two commits:
 
     $ git diff <older-commit-id> <more-recent-commit-id>
     # you can do this:
-    $ git diff commit-id~4 commit-id
-    # to get the diff between commit-id and the previous 4 commits.
+    $ git diff <commit-id>~4 <commit-id>
+    # to get the diff between <commit-id> and the previous 4 commits.
 
 # The index
 
