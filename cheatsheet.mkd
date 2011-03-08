@@ -1,37 +1,54 @@
 # Branches
 
-    # list branches
+## List
+
+    # local
     $ git branch -v
 
-    # create a branch
-    $ git checkout -b <new-branch-name>
+    # remote
+    $ git branch -rv
 
-    # switch to a branch
+## Switch to a branch
+
     $ git checkout <existing-branch-name>
 
-## Local
+## Create branches
 
-Local branches:
+    # local from current HEAD
+    $ git checkout -b <new-branch-name>
 
-    # Delete.
+    # local from arbitrary commit
+    $ git checkout -b <new-branch-name> <commit-id>
+
+    # add local branch to remote repo
+    $ git push <remote> <new-branch-name>
+    $ git branch <new-branch-name> --set-upstream <remote>/<new-branch-name>
+
+    # add remote branch to local and track it
+    $ git fetch <remote>
+    $ git checkout -b <new-branch-name> <remote-repo>/<branch-name>
+
+## Delete
+
+    # local
     $ git -d <branch-name>
 
-    # Rename.
-    $ git -m <current-name> <new-name>
-
-## Remote
-
-Branches on a remote repo:
-
-    # Like telling git to "push nothing to branch"
+    # remote (like telling git to "push nothing to branch")
     $ git push origin :<remote-branch-name>
 
-List remote branches:
+## Rename
 
-    $ git branch -r
+    $ git -m <current-name> <new-name>
 
-Operations on remote branches:
+## Commits, log, diff
 
+    # view last "n" logs in current branch
+    $ git log -n
+
+    # log on <branch-name> branch
+    $ git log <branch-name>
+
+    # Log on a 
     $ git log origin/foo
     $ git diff origin/HEAD
 
@@ -61,14 +78,18 @@ Stack manipulation:
 
 # History
 
-Only rewrite history on changes that have not been shared.
+Only rewrite history on changes that have not been shared. Do not use rebase
+on commits that have been uploaded to a remote repo, or if other people are
+pulling from your repo.
 
 ## Amend
 
-    # Change last commit's message
+The "amend" operator resets the previous commit and applies the changes to
+your working tree. To change the commit message on the last commit:
+
     $ git commit --amend
 
-You can add a file after committing and then
+or you can add a file after committing and then:
 
     $ git commit --amend
 
@@ -86,9 +107,10 @@ them, etc. Check `git help rebase` for instructions.
 
 # Commits
 
-Committing only certain changes:
+With git you can carefully "prepare" or stage your commits before saving the
+changes to the repo. To commit only certain changes in the same file:
 
-    # Will ask you for each edit...
+    # will ask you if you want to add, once for each edit "block"
     $ git add -p
 
     # interactive, more complicated but more powerful
@@ -118,11 +140,19 @@ Differences between the working copy and the last commit:
 Differences between the index (staged changes) and the last commit:
 
     $ git diff --cached
-    # I'd rather use the 'staged' alias, as 'staged' changes make more sense
+    # I prefer the 'staged' alias, it makes more sense.
     $ git diff --staged
+
+Differences between the working tree and the index:
+
+    $ git diff
 
 # Maintenance
 
-Removes untracked files and directories:
+To clean your working tree:
 
+    # removes untracked files and directories:
     $ git clean -f -d
+
+    # and files ignored by .gitignore!
+    $ git clean -x
