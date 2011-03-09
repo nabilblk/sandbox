@@ -46,6 +46,18 @@ Easy, just abort:
 
     $ git rebase --abort
 
+# Undoing changes
+
+If you want to discard a change to your working tree:
+
+    $ git checkout -- <path-to-file>
+
+If you want to revert a past commit:
+
+    # this creates a new commit that reverts the changes, with a default
+    # commit message.
+    $ git revert <commit-id>
+
 # Finding things out about past commits
 
     $ git log
