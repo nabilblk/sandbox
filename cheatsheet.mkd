@@ -40,18 +40,6 @@
 
     $ git -m <current-name> <new-name>
 
-## Commits, log, diff
-
-    # view last "n" logs in current branch
-    $ git log -n
-
-    # log on <branch-name> branch
-    $ git log <branch-name>
-
-    # Log on a 
-    $ git log origin/foo
-    $ git diff origin/HEAD
-
 ## Stashes
 
 Temporary branches that are not meant to be kept for long or distributed. Git
@@ -106,6 +94,18 @@ You can remove, edit the commit message, squash commits together, reorder
 them, etc. Check `git help rebase` for instructions.
 
 # Commits
+
+The usual log, diff operations:
+
+    # view last "n" logs in current branch
+    $ git log -n
+
+    # log on <branch-name> branch
+    $ git log <branch-name>
+
+    # operations on remote branches
+    $ git log origin/foo
+    $ git diff origin/HEAD
 
 With git you can carefully "prepare" or stage your commits before saving the
 changes to the repo. To commit only certain changes in the same file:
