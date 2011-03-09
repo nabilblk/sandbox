@@ -74,6 +74,9 @@ If you want to revert a past commit:
     # diff between know commit and previous n commits
     $ git diff <commit-id>~n <commit-id>
 
+    # show the contents of a file in a specific commit
+    $ git show <commit-id>:/path/to/file
+
 # Working with branches
 
 ## Feature branches
