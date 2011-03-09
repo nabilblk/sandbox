@@ -79,9 +79,63 @@ To interactively edit the last 10 commits:
 
 # The reflog
 
+The reflog is version control for your branch tips. With the reflog command
+you can see and manipulate this history.
+
+    $ git reflog
+
+    # include branches and the stash
+    $ git reflog --all
+
+    # view commit information for a branch, including reflog reference
+    $ git log --walk-reflogs
+
+It can save you from a unintentional `git reset --hard HEAD~n`!
+
 ## The stash
 
+The stash is a list of temporary branches/commits? that are not meant to be
+distributed. When stashing a working tree the state of the tree is saved and
+then it is reverted to HEAD.
+
+Stashed changes are not related to any branch: you can stash in feature-branch
+and apply the changes to master.
+
+    # record the state of the current working tree
+    $ git stash
+
+    # even better...
+    $ git stash save "working on foo, check bar setter, line 45"
+
+    # if you want to keep your already staged changes:
+    $ git stash save --keep-index
+
+    # list the contents of the stash
+    $ git stash list
+
+    # view a diff of stash entry "n"
+    $ git show -p  @stash{n}
+
+    # apply the most recent stashed change, and remove it from the list
+    $ git stash pop
+
+    # clear the stash list
+    $ git stash clear
+
 # Bisect
+
+    $ git bisect start
+    $ git bisect good <commit-id-for-last-known-good-commit>
+    $ git bisect bad <commit-id-for-oldest-known-bad-commit>
+    # git starts bisecting...
+    # after running your tests you mark commits as either "good"
+    $ git bisect good
+    # or "bad"
+    $ git bisect bad
+
+    # when you have found the commit that caused the bug, return to the point
+    # you were before running bisect
+    $ git bisect reset
 
 # Repo maintenance
 
