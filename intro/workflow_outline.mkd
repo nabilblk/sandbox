@@ -1,0 +1,46 @@
+# Basic workflow
+
+Add individual changes as you make them, or just before the commit, so you can
+decide what goes in the next commit.
+
+Using commit -m might encourage bad commit messages.
+
+When using push, it is better to specify the remote end, as well as the
+branch. Otherwise you might end up pushing changes in another branch that you
+did not want to push yet.
+
+'master' is another branch, it is the default by convention, but otherwise it
+is not special.
+
+The flags m and p in the rebase operation stand for "use merge strategies"
+while rebasing (so it detects renames upstream) and "preserve merges" so that
+merge commits are kept while rebasing.
+
+Differences between merge and commit when pulling changes...
+
+'rebase' is often called 'replay.'
+
+## What if there is a conflict while rebasing?
+
+Rebase temporarily detaches your commits and keeps the changes as a series of
+patches. After updating your local branch to point at the remote HEAD, it
+applies each one of the commits to it.
+
+You also have the choice to skip a commit when rebasing: git rebase --skip
+
+# Working with branches
+
+There are some scripts that simplify the remote feature branch workflow:
+willgit, git-flow.
+
+git checkout -b creates a new branch. The first argument is the name of the
+branch, the second is the parent commit for the branch.
+
+show github feature to see diff between 2 branches.
+
+## Merging branches
+
+The merge operation will include the branch commits in your master history,
+and create a "merge commit" at the point where you merged. Default commit
+message is good enough most of the time, but if you don't like it:
+--no-commit.

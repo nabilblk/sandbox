@@ -1,0 +1,146 @@
+# Basic workflow
+
+Get a copy of a remote repo:
+
+    $ git clone git@github.com:mamapitufo/sandbox.git
+
+Stage changes for a commit:
+
+    $ echo 'ehlo there' > greeting
+    $ git add greeting
+
+Commit changes:
+
+    $ git commit -v
+
+When you have a set of changes that you want to push to the remote repo:
+
+    $ git push origin <branch-name>
+
+If the remote branch is ahead of your local branch:
+
+    $ git fetch origin
+    $ git rebase -m -p origin <branch-name>
+    $ git push origin <branch-name>
+
+## What if there is a conflict while rebasing?
+
+While rebasing there might be conflicts. git stops when it finds a conflict
+and allows you to fix it:
+
+    $ git rebase origin master
+    # conflict... fix it.
+
+    $ git add <conflict files>
+    $ git rebase --continue
+
+If you want to skip a particular conflicting commit while rebasing:
+
+    $ git rebase --skip
+
+git will continue rebasing the next commit.
+
+## What if everything goes astray while rebasing?
+
+Easy, just abort:
+
+    $ git rebase --abort
+
+# Finding things out about past commits
+
+    $ git log
+
+    # only the past "n" commits
+    $ git log -n
+
+    # shows commit information as well as a full diff
+    $ git show <commit-id>
+
+    # diff between 2 commits
+    $ git diff <older-commit-id> <more-recent-commit-id
+
+    # diff between know commit and previous n commits
+    $ git diff <commit-id>~n <commit-id>
+
+# Working with branches
+
+## Feature branches
+
+If you are creating a new feature branch you probably want to track it in the
+remote repository as well.
+
+    # create local branch from current HEAD
+    $ git checkout -b <new-branch-name>
+
+    # push local branch to remote repo
+    $ git push origin <new-branch-name>
+
+    # link local branch with remote
+    $ git branch <new-branch-name> --set-upstream origin/<new-branch-name>
+
+If you want to work with a remote branch that already exists in the remote
+repo:
+
+    $ git fetch origin
+    $ git checkout -b <new-branch-name> origin/<new-branch-name>
+
+## Local branches
+
+If you want to quickly test something you can do a local branch:
+
+    # local branch from current HEAD
+    $ git checkout -b <new-branch-name>
+
+    # local branch from another branch
+    $ git checkout -b <new-branch-name> <another-branch>
+
+    # local branch from arbitrary commit
+    $ git checkout -b <new-branch-name> <commit-id>
+
+## Switching to a branch
+
+    $ git checkout <branch-name>
+
+If instead of a branch name you use an arbitrary commit you end up with a
+detached head. Extreme violence extremely useful to temporarily "roll back" to
+a past commit:
+
+    $ git checkout <good-commit-id>
+
+    # re-attach your HEAD
+    $ git checkout <branch-name>
+
+## Merging branches
+
+When you are ready to merge a branch, it's better if you rebase your feature
+branch to master and then merge back to master.
+
+    # rebase feature branch
+    $ git checkout <branch-name>
+    $ git rebase -m -p master
+    
+    # merge into master
+    $ git checkout master
+    $ git merge --no-ff <branch-name>
+
+## Deleting branches
+
+After you are done with a branch you should delete it:
+
+    $ git branch -d <branch-name>
+
+    # if the branch was never merged you need to force the delete:
+    $ git branch -D <branch-name>
+
+For feature branches you also need to clean up the remote branch:
+
+    # this is like telling git to "push nothing" to the remote branch
+    $ git push origin :<branch-name>
+
+## List branches
+
+    # local
+    $ git branch -v
+
+    # remote
+    $ git branch -rv
