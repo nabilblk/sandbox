@@ -1,0 +1,68 @@
+# The index
+
+git uses the index to "stage" the next commit.
+
+## What's in the index?
+
+Differences between the working tree and the index:
+
+    $ git diff
+
+Differences between the index (staged changes) and the last commit:
+
+    $ git diff --cached
+
+    # I prefer the "staged" alias, it makes more sense:
+    $ git diff --staged
+
+The index allows you to carefully "prepare" or stage your next commit before
+saving the changes to the repo. You can use 'git add' to add only certain
+files to the next commit, but you can be even more granular:
+
+    # asks whether to add each "edit block" or not:
+    $ git add -p
+
+    # edit the patch file before adding it to the stage:
+    $ git add -e
+
+# History
+
+ONLY REWRITE HISTORY ON CHANGES THAT HAVE NOT BEEN SHARED. Do not use rebase
+on commits that have been uploaded to a remote repo, or if there are
+forks/clones of your local repo.
+
+## Amend a commit
+
+The "amend" operator resets the previous commit and applies the changes to the
+index. If you want to change the commit message on the last commit:
+
+    $ git commit --amend
+
+If you want to add a change to the last commit:
+
+    $ vi ClassFoo.as
+    $ git add ClassFoo.as
+    $ git commit --amend
+
+## Interactive rebase
+
+Interactive rebase allows you to remove commits, edit the commit message,
+squash 2 or more commits together, reorder commits, etc.
+
+To interactively edit the last 10 commits:
+
+    $ git rebase -i HEAD~10
+
+# The reflog
+
+## The stash
+
+# Repo maintenance
+
+To clean your working tree:
+
+    # removes untracked files and directories:
+    $ git clean -f -d
+
+    # and files .gitignored!
+    $ git clean -x
