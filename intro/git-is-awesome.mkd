@@ -25,6 +25,30 @@ files to the next commit, but you can be even more granular:
     # edit the patch file before adding it to the stage:
     $ git add -e
 
+If you want to unstage changes in a file:
+
+    $ git checkout -- <path-to-file>
+
+# Forked repos, remote branches
+
+If someone has forked your repo and you need to merge or cherry-pick changes
+from them:
+
+    # add the remote repo and get its contents
+    $ git remote add <pivot> git@github.com:mamapitufo/sandbox-fork.git
+    $ git fetch <pivot>
+
+    # add a local branch to track the remote
+    $ git branch <pivot-branch> <pivot>/<remote-branch>
+
+    # ...and merge it:
+    $ git checkout <integration-branch>
+    $ git merge <pivot-branch>
+
+    # or cherry-pick what you need:
+    $ git checkout <integration-branch>
+    $ git cherry-pick <commit-id>
+
 # History
 
 ONLY REWRITE HISTORY ON CHANGES THAT HAVE NOT BEEN SHARED. Do not use rebase
@@ -56,6 +80,8 @@ To interactively edit the last 10 commits:
 # The reflog
 
 ## The stash
+
+# Bisect
 
 # Repo maintenance
 
